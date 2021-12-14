@@ -16,6 +16,11 @@ runs:
   steps:
     - uses: actions/checkout@v2
 
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.6
+        bundler-cache: true
+
     - name: Build Jekyll Site
       shell: bash
       run: |
