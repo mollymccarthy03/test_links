@@ -17,12 +17,12 @@ runs:
     - uses: actions/checkout@v2
 
     - name: Build Jekyll Site
+      shell: bash
       run: |
         bundle install
         bundle exec jekyll build
 
     - name: Test links
-      timeout-minutes: 10
       uses: docker://klakegg/html-proofer:3.16.0
       with:
         args: >-
