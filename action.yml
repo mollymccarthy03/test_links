@@ -36,5 +36,5 @@ runs:
           --http-status-ignore 302,401
           --file-ignore "${{ inputs.file_ignore }}"
           --url-ignore "${{ inputs.url_ignore }}"
-          ./site
+          ./_site
 
