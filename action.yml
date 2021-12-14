@@ -34,7 +34,7 @@ runs:
           --allow-hash-href
           --check-html
           --http-status-ignore 302,401
-          --file-ignore ${{ inputs.file_ignore }}
-          --url-ignore ${{ inputs.url_ignore }}
+          --file-ignore "${{ inputs.file_ignore }}"
+          --url-ignore "${{ inputs.url_ignore }}"
           ./site
 
