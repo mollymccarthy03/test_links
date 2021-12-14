@@ -1,0 +1,35 @@
+name: Build Website and Check Links
+description: Builds a Jekyll Website and verifies the links inside it
+
+inputs:
+  url_ignore:
+    required: false
+    description: The list of regex urls to ignore
+    default: ""
+  file_ignore:
+    required: false
+    description: The list of files to ignore
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v2
+
+    - name: Build Jekyll Site
+      run: |
+        bundle install
+        bundle exec jekyll build
+
+    - name: Test links
+      timeout-minutes: 10
+      uses: docker://klakegg/html-proofer:3.16.0
+      with:
+        args: >-
+          --allow-hash-href
+          --check-html
+          --http-status-ignore 302,401
+          --file-ignore ${{ inputs.file_ignore }}
+          --url-ignore ${{ inputs.url_ignore }}
+          ./site
+
