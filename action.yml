@@ -2,6 +2,9 @@ name: Build Website and Check Links
 description: Builds a Jekyll Website and verifies the links inside it
 
 inputs:
+  input_file:
+    required: false
+    description: A yaml file with with the
   url_ignore:
     required: false
     description: The list of regex urls to ignore
@@ -15,6 +18,8 @@ runs:
   using: "composite"
   steps:
     - uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
 
     - uses: ruby/setup-ruby@v1
       with:
@@ -26,6 +31,15 @@ runs:
       run: |
         bundle install
         bundle exec jekyll build
+
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Read the parameters
+      run: |
+
+
 
     - name: Test links
       uses: docker://klakegg/html-proofer:3.16.0
