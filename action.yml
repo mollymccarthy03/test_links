@@ -32,14 +32,6 @@ runs:
         bundle install
         bundle exec jekyll build
 
-    - uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-
-    - name: Read the parameters
-      run: |
-
-
 
     - name: Test links
       uses: docker://klakegg/html-proofer:3.16.0
