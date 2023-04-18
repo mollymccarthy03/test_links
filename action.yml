@@ -34,7 +34,7 @@ runs:
 
 
     - name: Test links
-      uses: hub.opensciencegrid.org/opensciencegrid/html-proofer@latest
+      uses: docker://hub.opensciencegrid.org/opensciencegrid/html-proofer:latest
       with:
         args: >-
           --ignore-empty-alt 
