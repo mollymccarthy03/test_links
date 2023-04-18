@@ -34,13 +34,14 @@ runs:
 
 
     - name: Test links
-      uses: docker://klakegg/html-proofer:3.16.0
+      uses: hub.opensciencegrid.org/opensciencegrid/html-proofer:latest
       with:
         args: >-
-          --allow-hash-href
-          --check-html
-          --empty-alt-ignore
-          --http-status-ignore 302,401
+          --ignore-empty-alt 
+          --ignore-missing-alt 
+          --no-enforce-https 
+          --no-check-external-hash 
+          --ignore-status-codes 302,401
           --file-ignore "${{ inputs.file_ignore }}"
           --url-ignore "${{ inputs.url_ignore }}"
           ./_site
