@@ -8,7 +8,7 @@ run the line below, you might need to upgrade the ruby image as well.
 ### To build a new image with the latest version of html-proofer. 
 
 ```shell
-docker build -t hub.opensciencegrid.org/opensciencegrid/html-proofer:latest .
+docker build --platform linux/amd64 -t hub.opensciencegrid.org/opensciencegrid/html-proofer:latest .
 docker push hub.opensciencegrid.org/opensciencegrid/html-proofer:latest
 ```
 
