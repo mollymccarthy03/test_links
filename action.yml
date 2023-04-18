@@ -42,7 +42,7 @@ runs:
           --no-enforce-https 
           --no-check-external-hash 
           --ignore-status-codes 302,401
-          --ignore-files "$FILE_IGNORE"
-          --ignore-urls "$URL_IGNORE"
+          --ignore-files "${{ inputs.file_ignore }}"
+          --ignore-urls "${{ inputs.url_ignore }}"
           ./_site
 
