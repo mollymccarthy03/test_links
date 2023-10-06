@@ -32,6 +32,17 @@ runs:
         bundle install
         bundle exec jekyll build
 
+    - name: Ensure jq and curl are installed
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y jq curl
+
+    - name: Fetch and process URLs
+      id: set-urls
+      run: |
+        urls=$(curl -s https://raw.githubusercontent.com/CannonLock/link_checker_config/main/ignore_urls.json | jq -r 'map("/" + . + "/") | join(",")' | sed 's/ //g')
+        echo "Computed URLs: $urls"
+        echo "URLS=$urls" >> $GITHUB_ENV
 
     - name: Test links
       uses: docker://hub.opensciencegrid.org/opensciencegrid/html-proofer:latest
@@ -43,6 +54,5 @@ runs:
           --no-check-external-hash 
           --ignore-status-codes 302,401
           --ignore-files "${{ inputs.file_ignore }}"
-          --ignore-urls "${{ inputs.url_ignore }}"
+          --ignore-urls "${{ inputs.url_ignore }}${{ env.URLS }}"
           ./_site
-
