@@ -33,12 +33,14 @@ runs:
         bundle exec jekyll build
 
     - name: Ensure jq and curl are installed
+      shell: bash
       run: |
         sudo apt-get update
         sudo apt-get install -y jq curl
 
     - name: Fetch and process URLs
       id: set-urls
+      shell: bash
       run: |
         urls=$(curl -s https://raw.githubusercontent.com/CannonLock/link_checker_config/main/ignore_urls.json | jq -r 'map("/" + . + "/") | join(",")' | sed 's/ //g')
         echo "Computed URLs: $urls"
