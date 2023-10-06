@@ -23,7 +23,7 @@ runs:
 
     - uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.2.2
+        ruby-version: 2.6
         bundler-cache: true
 
     - name: Build Jekyll Site
@@ -43,7 +43,6 @@ runs:
       shell: bash
       run: |
         urls=$(curl -s https://raw.githubusercontent.com/CannonLock/link_checker_config/main/ignore_urls.json | jq -r 'map("/" + . + "/") | join(",")' | sed 's/ //g')
-        echo "Computed URLs: $urls"
         echo "URLS=$urls" >> $GITHUB_ENV
 
     - name: Test links
