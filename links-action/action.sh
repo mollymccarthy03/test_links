@@ -1,4 +1,4 @@
-urls=$(curl -s https://raw.githubusercontent.com/CannonLock/link_checker_config/main/ignore_urls.json | jq -r 'map("/" + . + "/") | join(",")' | sed 's/ //g')
+urls=$(curl -s https://raw.githubusercontent.com/CannonLock/test_links/main/links-action/ignore_urls.json | jq -r 'map("/" + . + "/") | join(",")' | sed 's/ //g')
 
 # Echo the result
 echo "Computed URLs: $urls"
