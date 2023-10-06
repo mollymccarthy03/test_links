@@ -35,8 +35,8 @@ runs:
     - name: Ensure jq and curl are installed
       shell: bash
       run: |
-        sudo apt-get update
-        sudo apt-get install -y jq curl
+        apt-get update
+        apt-get install -y jq curl
 
     - name: Fetch and process URLs
       id: set-urls
